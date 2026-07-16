@@ -13,7 +13,7 @@ namespace BuildingBlocks.Exceptions
         }
 
         public NotFoundException(string message, object key) :
-            base($"Not found for {message}{key}")
+            base($"Not found for {message} {key}")
         {
             
         }
