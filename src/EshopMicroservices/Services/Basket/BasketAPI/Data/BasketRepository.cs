@@ -4,8 +4,6 @@ using BasketAPI.GetBasketById;
 using BasketAPI.Model;
 using BasketAPI.StoreBasket;
 using Marten;
-using Marten.EventStorage.QuickWithServerTimestamps;
-using Microsoft.IdentityModel.Tokens;
 
 namespace BasketAPI.Data
 {
