@@ -1,6 +1,7 @@
 ﻿using BasketAPI.Data;
 using BasketAPI.Model;
 using BuildingBlocks.CQRS;
+using Discount.Grpc.Protos;
 using FluentValidation;
 using Marten;
 
@@ -19,13 +20,24 @@ namespace BasketAPI.StoreBasket
             RuleFor(x => x.Cart.CartItems).NotEmpty().WithMessage("atleast one item is required");
         }
     }
-    public class StoreBasketHandler(IBasketRepository basketRepo) : ICommandHandler<StoreBasketCommand, StoreBasketResult>
+    public class StoreBasketHandler(IBasketRepository basketRepo,
+        DiscountProtoService.DiscountProtoServiceClient discount ) : ICommandHandler<StoreBasketCommand, StoreBasketResult>
     {
         public async Task<StoreBasketResult> Handle(StoreBasketCommand request, CancellationToken cancellationToken)
         {
+            await GetDiscountedPrice(request, cancellationToken);
+
             var result = await basketRepo.StoreBasket(request.Cart, cancellationToken);
             return new StoreBasketResult(result);
 
+            async Task GetDiscountedPrice(StoreBasketCommand request, CancellationToken cancellationToken)
+            {
+                foreach (var item in request.Cart.CartItems)
+                {
+                    var discountPrice = await discount.GetDiscountAsync(new GetDiscountRequest { ProductName = item.ProductName }, cancellationToken: cancellationToken);
+                    item.Price -= discountPrice.Amount;
+                }
+            }
         }
     }
 }
