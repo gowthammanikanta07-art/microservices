@@ -11,6 +11,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Protos\Models\**" />
+    <Content Remove="Protos\Models\**" />
+    <EmbeddedResource Remove="Protos\Models\**" />
+    <None Remove="Protos\Models\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Protos\discount.proto" />
   </ItemGroup>
 
@@ -28,10 +35,6 @@
 
   <ItemGroup>
     <Protobuf Include="Protos\discount.proto" GrpcServices="Server" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Protos\Models\" />
   </ItemGroup>
 
 </Project>
