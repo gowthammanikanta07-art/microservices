@@ -13,8 +13,8 @@ namespace Ordering.Domain.Abstractions
         //common properties in domain
         public DateTime? CreatedAt { get; set; }
         public string? CreatedBy { get; set; }
-        public DateTime? LastModified { get; set; }
-        public string? ModifiedBy { get; set; }
+        public DateTime? LastModifiedAt { get; set; }
+        public string? LastModifiedBy { get; set; }
 
     }
 }
