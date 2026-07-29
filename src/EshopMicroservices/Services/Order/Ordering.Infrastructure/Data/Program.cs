@@ -9,6 +9,8 @@ builder.Services
     .AddInfrastructureServices(builder.Configuration)
     .AddApiService();
 
+
+
 var app = builder.Build();
 
 app.UseApiServices();

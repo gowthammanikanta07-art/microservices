@@ -17,7 +17,7 @@ namespace Ordering.Domain.Models
                 Name = name,
                 Price = price
             };
-            return new Product();
+            return product;
         }
     }
 }
