@@ -2,6 +2,7 @@
 using BasketAPI.Data;
 using BuildingBlocks.Exceptions.Handler;
 using BuildingBlocks.Logging;
+using BuildingBlocks.Messaging.MassTransit;
 using BuildingBlocks.Validations;
 using Carter;
 using Discount.Grpc.Protos;
@@ -46,7 +47,7 @@ builder.Services.AddGrpcClient<DiscountProtoService.DiscountProtoServiceClient>(
         return handler;
     });
 
-
+builder.Services.AddMessageBroker(builder.Configuration);
 builder.Services.AddExceptionHandler<CustomExceptionHandler>();
 builder.Services.AddHealthChecks()
     .AddNpgSql(builder.Configuration.GetConnectionString("Database")!)
@@ -60,7 +61,7 @@ var app = builder.Build();
 app.MapGet("/test", () => "hi");
 app.MapCarter();
 app.UseExceptionHandler(opt => { });
-app.UseHealthChecks("/baskethealth",
+app.UseHealthChecks("/health",
     new HealthCheckOptions()
     {
         ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
