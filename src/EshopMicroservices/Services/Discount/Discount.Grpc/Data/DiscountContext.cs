@@ -18,7 +18,7 @@ namespace Discount.gRPC.Data
             modelBuilder.Entity<Coupons>().HasData(
                 new Coupons() { Id=1,ProductName="Iphone", Description="Expensive Mobile", Amount=120},
                 new Coupons() { Id=2,ProductName="MacBook", Description="Expensive Laptop", Amount=100}
-            );
+            );  
         }
     }
 

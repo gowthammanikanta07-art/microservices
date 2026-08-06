@@ -1,6 +1,9 @@
 ﻿using BuildingBlocks.Logging;
+using BuildingBlocks.Messaging.MassTransit;
 using BuildingBlocks.Validations;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.FeatureManagement;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
@@ -10,7 +13,7 @@ namespace Ordering.Application
 {
     public static class DependencyInjections
     {
-        public static IServiceCollection ApplicationServices(this IServiceCollection services)
+        public static IServiceCollection ApplicationServices(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddMediatR(config =>
             {
@@ -18,6 +21,8 @@ namespace Ordering.Application
                 config.AddOpenBehavior(typeof(ValidationBehaviours<,>));
                 config.AddOpenBehavior(typeof(LoggingBehaviour<,>));
             });
+            services.AddFeatureManagement();
+            services.AddMessageBroker(configuration, Assembly.GetExecutingAssembly());
             return services;
         }
     }

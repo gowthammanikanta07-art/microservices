@@ -1,12 +1,10 @@
-﻿using Mapster;
+﻿
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Ordering.Domain.Enums;
 using Ordering.Domain.Models;
 using Ordering.Domain.ValueObjects;
-using System;
-using System.Collections.Generic;
-using System.Text;
+
 
 namespace Ordering.Infrastructure.Data.Configurations
 {

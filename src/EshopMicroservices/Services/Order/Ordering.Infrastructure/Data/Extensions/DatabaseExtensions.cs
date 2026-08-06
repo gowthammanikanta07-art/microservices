@@ -24,7 +24,7 @@ namespace Ordering.Infrastructure.Data.Extensions
         {
             await SeedCustomerAsync(context);
             await SeedProductAsync(context);
-            await SeedOrderandItemsAsync(context);
+            //await SeedOrderandItemsAsync(context);
         }
 
         private static async Task SeedProductAsync(ApplicationDbContext context)

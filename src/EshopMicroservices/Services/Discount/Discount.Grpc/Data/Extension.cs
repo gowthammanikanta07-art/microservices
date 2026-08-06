@@ -6,9 +6,12 @@ namespace Discount.gRPC.Data
     {
         public static IApplicationBuilder UseMigration(this IApplicationBuilder app)
         {
-            var scope = app.ApplicationServices.CreateScope();
+            using var scope = app.ApplicationServices.CreateScope();
             var context = scope.ServiceProvider.GetRequiredService<DiscountContext>();
-            context.Database.MigrateAsync();
+            if (!context.Coupons.Any())
+            {
+                context.Database.Migrate();
+            }
             return app;
         }
     }

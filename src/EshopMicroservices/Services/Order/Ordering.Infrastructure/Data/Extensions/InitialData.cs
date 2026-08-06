@@ -12,15 +12,15 @@ namespace Ordering.Infrastructure.Data.Extensions
         public static IEnumerable<Customer> Customers =>
             new List<Customer>
             {
-                Customer.Create(CustomerId.Of(new Guid("064A20E5-82AE-4385-A4E5-C0EDDC245807")),"Gowtham","gowtham_test@gmail.com"),
-                Customer.Create(CustomerId.Of(new Guid("064A20E5-82AE-4385-A4E5-C0EDDC245808")),"Reddy","reddy_test@gmail.com")
+                Customer.Create(CustomerId.Of(new Guid("c4d7e8b6-1f9a-4c12-9b8a-3f4e5d6c7b8a")),"John","john.doe@example.com"),
+                //Customer.Create(CustomerId.Of(new Guid("064A20E5-82AE-4385-A4E5-C0EDDC245808")),"Reddy","reddy_test@gmail.com")
             };
 
         public static IEnumerable<Product> Products =>
            new List<Product>
            {
-                Product.Create(ProductId.Of(new Guid("164A20E5-82AE-4385-A4E5-C0EDDC245807")),"Iphone", 125),
-                Product.Create(ProductId.Of(new Guid("164A20E5-82AE-4385-A4E5-C0EDDC245808")),"MacBook",250)
+                Product.Create(ProductId.Of(new Guid("27031658-61eb-47c7-be1a-4ea199957867")),"MacBook", 500),
+                Product.Create(ProductId.Of(new Guid("73B704AC-813E-4CCE-B834-F9370DF41534")),"Iphone",620)
            };
 
         public static IEnumerable<Order> OrderwithItems
