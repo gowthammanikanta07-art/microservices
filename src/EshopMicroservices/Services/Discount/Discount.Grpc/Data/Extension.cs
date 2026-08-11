@@ -8,10 +8,8 @@ namespace Discount.gRPC.Data
         {
             using var scope = app.ApplicationServices.CreateScope();
             var context = scope.ServiceProvider.GetRequiredService<DiscountContext>();
-            if (!context.Coupons.Any())
-            {
-                context.Database.Migrate();
-            }
+            context.Database.Migrate();
+            
             return app;
         }
     }
