@@ -17,7 +17,6 @@ namespace BasketAPI.StoreBasket
         {
             RuleFor(x => x.Cart).NotNull().WithMessage("Cart cant be null");
             RuleFor(x => x.Cart.UserName).NotEmpty().WithMessage("Username is must");
-            RuleFor(x => x.Cart.CartItems).NotEmpty().WithMessage("atleast one item is required");
         }
     }
     public class StoreBasketHandler(IBasketRepository basketRepo,
