@@ -17,7 +17,6 @@ namespace BasketAPI.StoreBasket
         {
             RuleFor(x => x.Cart).NotNull().WithMessage("Cart cant be null");
             RuleFor(x => x.Cart.UserName).NotEmpty().WithMessage("Username is must");
-            RuleFor(x => x.Cart.CartItems).NotEmpty().WithMessage("atleast one item is required");
         }
     }
     public class StoreBasketHandler(IBasketRepository basketRepo,
@@ -34,6 +33,7 @@ namespace BasketAPI.StoreBasket
             {
                 foreach (var item in request.Cart.CartItems)
                 {
+                    item.ProductName = item.ProductName.ToLower();
                     var discountPrice = await discount.GetDiscountAsync(new GetDiscountRequest { ProductName = item.ProductName }, cancellationToken: cancellationToken);
                     item.Price -= discountPrice.Amount;
                 }
