@@ -33,6 +33,7 @@ namespace BasketAPI.StoreBasket
             {
                 foreach (var item in request.Cart.CartItems)
                 {
+                    item.ProductName = item.ProductName.ToLower();
                     var discountPrice = await discount.GetDiscountAsync(new GetDiscountRequest { ProductName = item.ProductName }, cancellationToken: cancellationToken);
                     item.Price -= discountPrice.Amount;
                 }

@@ -15,31 +15,31 @@ services:
     image: rabbitmq:management
     
   catalog.api:
-    image: gowthamdocker878/catalogservice
+    image: gowthamdocker878/catalogservice:v1
     build:
       context: .
       dockerfile: Services/Catalog/Catalog.API/Dockerfile
 
   basket.api:
-    image: gowthamdocker878/basketservice
+    image: gowthamdocker878/basketservice:v2
     build:
       context: .
       dockerfile: Services/Basket/BasketAPI/Dockerfile
 
   discount.grpc:
-    image: gowthamdocker878/discountservice
+    image: gowthamdocker878/discountservice:v2
     build:
       context: .
       dockerfile: Services/Discount/Discount.Grpc/Dockerfile
 
   ordering.api:
-    image: gowthamdocker878/orderingservice
+    image: gowthamdocker878/orderingservice:v1
     build:
       context: .
       dockerfile: Services/Order/Ordering.API/Dockerfile
 
   yarp:
-    image: gowthamdocker878/yarpservice
+    image: gowthamdocker878/yarpservice:v1
     build:
       context: .
       dockerfile: ApiGateway/YARP/Dockerfile
